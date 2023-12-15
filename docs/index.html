@@ -1,0 +1,294 @@
+<!DOCTYPE html >
+
+<html>
+
+<head>
+
+	<title>ECIR '24 - Additional Information and Results</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Roboto+Slab|Zilla+Slab" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
+	<link rel="stylesheet" href="css/sortable-theme-tu.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<!--<link rel="stylesheet" href="css/style_anon.css" />-->
+	<script src="js/sortable.min.js"></script>
+	
+	<link rel="include" href="tables_window/tables_rsc15.html" data-target="window-rsc15" />
+	<link rel="include" href="tables_window/tables_diginetica.html" data-target="window-diginetica" />
+	<link rel="include" href="tables_window/tables_zalando.html" data-target="window-zalando" />
+	<link rel="include" href="tables_window/tables_retailrocket.html" data-target="window-retailrocket" />
+	
+	<!--link rel="include" href="tables_window/tables_8tracks.html" data-target="window-8tracks" /-->
+	<link rel="include" href="tables_window/tables_aotm.html" data-target="window-aotm" />
+	<link rel="include" href="tables_window/tables_nowplaying.html" data-target="window-nowplaying" />
+	<link rel="include" href="tables_window/tables_30music.html" data-target="window-30music" />
+	
+	<link rel="include" href="tables_single/listOfArticles.html" data-target="single-rsc15_64" />
+	
+	
+	<link rel="include" href="tables_opt/opt_table_single.html" data-target="single-params" />
+	<link rel="include" href="tables_opt/opt_tables_window.html" data-target="window-params" />
+	<link rel="include" href="tables_opt/opt_tables_windowtuningOnTestdata.html" data-target="window-paramstest" />
+
+	<script type="text/javascript">
+		
+		function round( element, size ) {
+			var rounded = parseFloat( $(element).html() ).toFixed( size );
+			$(element).html( rounded );
+		}
+	
+		$( document ).ready( function() {
+			
+			$( "link[rel=include]" ).each( function() {
+				target = $( this ).attr("data-target");
+				url = $( this ).attr("href");
+				$( "#"+target ).load( url, function() {
+					$( this ).find( ".algo" ).each( function() {
+						name = $(this).html();
+						el = $(this).closest( ".tab-pane" ).find( ".configs ."+name );
+						$(this).attr( "title", el.html() );
+						$(this).attr( "data-placement", "top" );
+						$(this).attr( "data-container", "body" );
+						$(this).attr( "data-html", "true" );
+					});
+					$( this ).find( ".algo" ).tooltip();
+					
+					$( this ).find( ".num-4" ).each( function() {
+						round(this,3);
+					});
+					
+					$( this ).find( ".num-00" ).each( function() {
+						round(this,0);
+					});
+					
+					$( this ).find( ".num-3" ).each( function() {
+						round(this,3);
+					});
+					
+					$( this ).find( ".num2" ).each( function() {
+						round(this, 2);
+					});
+					
+					window.Sortable.initTable( $( this ).find( ".sortable-theme-minimal" ).get(0)  );
+					if ( $( this ).find( ".sortable-theme-minimal" ).length > 1 ) {
+						window.Sortable.initTable( $( this ).find( ".sortable-theme-minimal" ).get(1)  );
+						window.Sortable.initTable( $( this ).find( ".sortable-theme-minimal" ).get(2)  );
+					}
+					//$( this ).find( ".sortable-theme-minimal" ).DataTable();
+					$( this ).find( ".sortable-theme-minimal th:nth-child(2)" ).click();
+					
+				} );
+
+			} );
+			
+			$( "table.hyper-params td:not(:nth-child(1)):not(:nth-child(2))" ).each( function() {
+				round(this,2);
+			} );
+			
+			$( "table.hyper-space tr:not(:nth-child(1)):not(:nth-child(2)) td:not(:nth-child(1))" ).each( function() {
+				round(this,2);
+			} );
+			
+			$( ".num-4" ).each( function() {
+				round(this,4);
+			});
+			
+			$( ".num-3" ).each( function() {
+				round(this,3);
+			});
+			
+			$( ".num-2" ).each( function() {
+				round(this,2);
+			});
+			
+		} );
+	</script>
+	
+</head>
+
+<body>
+
+<div class="mainbox">
+			
+	<h2>
+		<span class="subtext italic">
+			ECIR 2024 - Glasgow, Scotland
+		</span> <br />
+		<span class="highlighted">
+			Performance Comparison of Session-based Recommendation Algorithms based on Graph Neural Networks
+		</span> <br />
+		<span class="subtext">
+			Additional Information: Source Code, Optimized Hyper-Parameters and Additional Result Tables
+		</span>
+	</h2>    
+	
+	<hr/>
+	
+	<div class="authors">
+		
+		<div class="author">
+			Anonymous <br/>
+			<span class="mail">Anonymous [at] gmail.com</span><br/>
+		</div>
+        
+        	<!-- <div class="author">
+			Anonymous <br/>
+			<span class="mail">Anonymous [at] gmail.com</span><br/>
+		</div>
+        
+        	<div class="author">
+			Anonymous <br/>
+			<span class="mail">Anonymous [at] gmail.com</span><br/>
+		</div> -->
+        
+        	<div class="author">
+			Anonymous <br/>
+			<span class="mail">Anonymous [at] gmail.com</span><br/>
+		</div>
+		
+	</div>
+	
+	<hr/>
+	
+	<div class="abstract">
+
+		<p align="justify">
+		      In session-based recommendation settings, a recommender system has no access to long-term user profiles and thus has to base its item suggestions on the 
+			user interactions that are observed in an ongoing session. Since such sessions can consist of only a small set of interactions, 
+			various hybrid approaches were proposed in the recent literature, which consider side information about the items, e.g., their category. 
+			From a technical viewpoint, Graph Neural Networks (GNN) are a common choice for such problem settings, as these types of neural networks allow us 
+			to integrate various types of heterogeneous information in a natural way. Unfortunately, in the existing literature a variety of evaluation settings 
+			are used, e.g., in terms of protocols, metrics and baselines, which makes it difficult to assess what represents the state-of-the-art in session-based 
+			recommendation.  In this work, we present the results of an independent evaluation of a eight GNN-based approaches that were recently published in high-quality outlets. 
+			To ensure a fair comparison, all models are systematically tuned and tested under identical conditions using three commonly used datasets. 
+			We furthermore include k-nearest-neighbor and sequential rules-based models as baselines, as such models have previously exhibited competitive performance results for similar settings. 
+			To our surprise, the evaluation showed that the simple models, which do not rely on side information, outperform <em>all</em> recent GNN models in terms of the Mean Reciprocal Rank, which we used 
+			as an optimization criterion, and were only outperformed in three cases in terms of the Hit Rate. Additional analyses furthermore reveal that several other factors that are often not deeply discussed in papers, e.g., 
+			random seeds, can markedly impact the performance of GNN-based models. Our results therefore <em>(a)</em> point to continuing issues in the community in terms of research methodology and <em>(b)</em> indicate that there is ample room for improvement in session-based recommendation.
+		</p>
+		
+	</div>
+
+	<nav>
+		<ul class="nav nav-tabs">
+		  <li class="active"><a data-toggle="tab" href="#sources">Source Code and Datasets</a></li>
+		  <li><a data-toggle="tab" href="#window">Result Tables</a></li>
+		  <li><a data-toggle="tab" href="#single">Considered papers</a></li>
+		</ul>
+	</nav>
+	
+	
+	<div class="tab-content">
+	
+		<div id="sources" class="tab-pane fade in active">
+			
+			<h3>Source Code and Datasets</h3>
+			
+			<p>
+				<span style="color:blue">The full source code of the framework  and utilized dataset can be found here:</span> <br/>
+				<a href="https://github.com/RecSysEvaluation/SessionRecGraphFusion">https://github.com/RecSysEvaluation/SessionRecGraphFusion</a> <br/>
+			</p>
+									
+		</div>
+		
+		<div id="window" class="tab-pane fade in">
+			
+			<ul class="nav nav-tabs" id="tables_tabs">
+				
+	            		<li class="active"><a href="#window-rsc15" data-toggle="tab">RSC15</a></li>
+	            		<li><a href="#window-diginetica" data-toggle="tab">DIGINETICA</a></li>
+				<li><a href="#window-retailrocket" data-toggle="tab">RETAILROCKET</a></li>
+	            		<li><a href="#window-params" data-toggle="tab">Hyperparameters</a></li>
+				
+
+			
+			</ul>
+
+
+			<div class="tab-content">
+
+				<div id="window-rsc15" class="tab-pane fade in active">
+					aaaaa
+				</div>
+				
+				<div id="window-retailrocket" class="tab-pane fade in">
+				 	ccccc
+				</div>
+				
+				<div id="window-zalando" class="tab-pane fade in">
+					ddddd
+				</div>
+				
+				<div id="window-diginetica" class="tab-pane fade in">
+					iiiiii
+				</div>
+				
+				<div id="window-8tracks" class="tab-pane fade in">
+					eeeee
+				</div>
+				
+				<div id="window-aotm" class="tab-pane fade in">
+					fffff
+				</div>
+				
+				<div id="window-nowplaying" class="tab-pane fade in">
+					ggggg
+				</div>
+				
+				<div id="window-30music" class="tab-pane fade in">
+					hhhhh
+				</div>
+				
+				<div id="window-params" class="tab-pane fade in">
+					iiiiii
+				</div>
+
+				<div id="window-paramstest" class="tab-pane fade in">
+					iiiiii
+				</div>
+				
+			</div>
+			
+		</div>
+
+
+		<div id="single" class="tab-pane fade in">
+			
+	            <a href="#single-rsc15_64"></a>
+
+			<div class="tab-content">
+			
+				<div id="single-rsc15_64" class="tab-pane fade in active">
+					aaaaa
+				</div>
+				
+				<div id="single-rsc15_4" class="tab-pane fade in">
+					bbbbb
+				</div>
+				
+				<div id="single-diginetica" class="tab-pane fade in">
+				 	ccccc
+				</div>
+				
+				<div id="single-params" class="tab-pane fade in">
+					ddddd
+				</div>
+			
+			</div>
+	            
+			
+		</div>
+		
+	</div>
+	<br/>
+	<br/>
+</div>	
+
+<script type="text/javascript"></script>
+
+</body>
+</html>

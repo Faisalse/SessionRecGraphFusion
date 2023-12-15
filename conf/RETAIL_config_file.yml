@@ -1,0 +1,71 @@
+type: single # single|window, maybe add opt
+key: BaselinesAndBenchMarkModels #added to the csv names
+evaluation: evaluation #evaluation|evaluation_last|evaluation_multiple|evaluation_user_based|evaluation_user_based_multiple
+data:
+  name: retailrocket #added in the end of the csv names
+  folder: data/retailrocket/fulltrain/
+  prefix: retailrocket
+  opts: {sessions_test: 100} # sessions_test: "S" or "M" or "L"
+results:
+  folder: results/
+  
+metrics:
+- class: accuracy.MRR
+  length: [3,5,10,15,20]
+- class: accuracy.HitRate
+  length: [3,5,10,15,20]
+- class: coverage.Coverage
+  length: [20]
+- class: popularity.Popularity
+  length: [20]
+- class: saver.Saver
+  length: [50]
+- class: time_memory_usage.Time_usage_training
+- class: time_memory_usage.Time_usage_testing
+
+algorithms:
+- class: knn.vstan.VSKNN_STAN
+  params: { k: 625 , sample_size: 891, lambda_spw: 0.94 , lambda_snh: 55, lambda_inh: 2.4 }
+  key: vstan
+- class: knn.stan.STAN
+  params: { k: 630 , sample_size: 3000, lambda_spw: 0.16 , lambda_snh: 530, lambda_inh: 0.57 }
+  key: stan
+- class: knn.sfcknn.SeqFilterContextKNN
+  params: { k: 200, sample_size: 300 }
+  key: sfcknn
+- class: baselines.sr.SequentialRules
+  params: { steps: 3, weighting: div}
+  key: sr
+
+# GNN models
+- class: MGS.MGS.MGS
+  params: {epoch: 20, lr: 0.0078, batch_size: 128, l2: 0.0001, dropout: 0.3} 
+  key: MGS
+
+- class: CM_HGCN.CM_HGCN.CM_HGCN
+  params: {epoch: 10, lr: 0.0003, batch_size: 100, embedding_size: 100, l2: 0.00001}  
+  key: CM_HGCN
+
+- class: COTREC.COTREC.COTRECModel
+  params: {epoch: 20, lr: 0.003, batch_size: 100, embedding_size: 80, l2: 0.0001}
+  key: COTRECModel
+
+- class: FLCSP.FLCSP_cate.FLCSP_cate      
+  params: {epoch: 20, lr: 0.0004, batch_size: 256, embedding_size: 100, hidden_size: 150, dropout: 0.2, l2: 0.00001}
+  key: FLCSP_cate
+
+- class: GCEGNN.GCEGNN.GCEGNN
+  params: {epoch: 12, lr: 0.0005, batch_size: 8, embedding_size: 60, dropout: 0.5, l2: 0.0001}
+  key: GCEGNN
+
+- class: GNRRW.GNRRW.GNRRW
+  params: {epoch: 10, lr: 0.0045, batch_size: 200, embedding_size: 16, l2: 0.00001}
+  key: GNRRW
+
+- class: TAGNN.TAGNN.TAGNN
+  params: {epoch: 20, lr: 0.0003, batch_size: 100, embedding_size: 100, l2: 0.00001}
+  key: TAGNN
+
+- class: sgnn.gnn.GGNN
+  params: {epoch: 15, lr: 0.004, batch_size: 256, embedding_size: 150, l2: 0.00001}
+  key: gnn

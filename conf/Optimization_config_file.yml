@@ -1,0 +1,151 @@
+type: opt # single|window, maybe add opt
+key: Optimization_of_GNN_kNN_Models #added to the csv names
+evaluation: evaluation #evaluation|evaluation_last|evaluation_multiple|evaluation_user_based|evaluation_user_based_multiple
+
+data:
+  name: rec15 #added in the end of the csv names
+  folder: data/rec15/fulltrain/rec1By64/
+  prefix: rec15
+  opts: {sessions_test: 100} # sessions_test: "S" or "M" or "L"
+
+results:
+  folder: results/
+metrics:
+- class: accuracy.MRR
+  length: [3,5,10,15,20]
+- class: accuracy.HitRate
+  length: [3,5,10,15,20]
+- class: coverage.Coverage
+  length: [20]
+- class: popularity.Popularity
+  length: [20]
+- class: saver.Saver
+  length: [50]
+- class: time_memory_usage.Time_usage_training
+- class: time_memory_usage.Time_usage_testing
+
+optimize:
+  class: accuracy.MRR
+  length: [20]
+  iterations: 100  #optional
+
+algorithms:
+- class: knn.vstan.VSKNN_STAN
+  params: {}
+  params_opt:
+    k: [50, 100, 500, 600, 700, 800, 1000, 1300, 1500, 1700, 2000, 2500, 2800, 3000]
+    sample_size: [500, 600, 800, 1000, 1800, 2500, 2200, 4000, 5000, 7000, 8000, 10000]
+    lambda_spw: [0.91, 0.92, 0.93, 0.94, 0.95, 0.96, 0.97, 0.98, 0.99, 0.11, 0.12, 0.101, 0.102, 0.103, 0.104, 0.105, 0.106, 0.107, 0.108, 0.15, 0.16, 1.2, 1.8, 2.4]
+    lambda_snh: 50,51, 55, 57, 71, 75, 80, 100, 150, 200, 400, 450, 470, 500, 520, 530, 600]
+    lambda_inh: [0.5, 0.51, 0.52, 0.53, 0.54, 0.55, 0.56, 0.57, 0.58, 1.8, 2, 2.4, 2.5, 2.8, 3, 3.5, 3.8, 4]
+  key: vstan
+
+- class: knn.stan.STAN
+  params: {}
+  params_opt:
+    k: [510, 530,570, 600, 630, 700, 750, 1500, 2000, 2500, 2800, 3000, 3500, 4000, 4500, 5000, 5500, 6000]
+    sample_size: [500, 1000, 1500, 2000, 2500, 2550, 2650, 2700, 2800, 2900, 3000]
+    lambda_spw: [0.1, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.35, 0.40, 0.60, 0.70, 0.81]
+    lambda_snh: [10, 25, 50, 100, 150, 200, 250, 300, 350, 400, 450, 470, 500, 520, 530, 600]
+    lambda_inh: [0.5, 0.51, 0.52, 0.53, 0.54, 0.55, 0.56, 0.57, 0.58, 1, 1.5, 2, 5, 6, 7, 9, 15, 20]
+  key: stan
+
+- class: baselines.sr.SequentialRules
+  params: {}
+  params_opt:
+    steps: [5, 3, 1, 2, 4, 8, 10,12, 15, 18, 20]
+    weighting: ["linear", "log", "same", "div", "quadratic"]
+  key: sr
+
+- class: knn.sfcknn.SeqFilterContextKNN
+  params: {}
+  params_opt:
+    k: [50,100,500, 800, 1000,1500, 2000, 2500]
+    sample_size: [500,1000,1500, 2000, 2500,5000,10000]
+    similarity: ["cosine", "tanimoto", "binary"]
+  key: sfcknn  
+
+
+- class: MGS.MGS.MGS
+  params: { }
+  params_opt:
+    epoch: [10, 15, 20]
+    lr: [{from: 0.01, to: 0.0001, in: 10, type: float32}]
+    batch_size: [32, 64,128]
+    l2: [0.00001, 0.0001, 0.000001, 0.001]
+    dropout: [0.1,0.2,0.3, 0.5]
+  key: MGS
+
+- class: TAGNN.TAGNN.TAGNN
+  params: { }
+  params_opt:
+    epoch: [10, 15, 20, 25]
+    lr: [{from: 0.01, to: 0.001, in: 10, type: float32},{from: 0.001, to: 0.0001, in: 10, type: float32}]
+    batch_size: [20, 32, 100, 128, 200]
+    embedding_size: [50, 100, 150]
+    l2: [0.00001, 0.0001]
+  key: TAGNN
+
+- class: GNRRW.GNRRW.GNRRW
+  params: { }
+  params_opt:
+    epoch: [10, 15, 20, 25]
+    lr: [{from: 0.01, to: 0.0001, in: 10, type: float32}]
+    batch_size: [20, 32, 100, 128, 200]
+    embedding_size: [20, 32, 100, 128, 200]
+    l2: [0.00001, 0.0001]
+  key: GNRRW
+
+- class: FLCSP.FLCSP_cate.FLCSP_cate
+  params: { }
+  params_opt:
+    epoch: [10, 15, 20, 25]
+    lr: [{from: 0.01, to: 0.001, in: 10, type: float32},{from: 0.001, to: 0.0001, in: 10, type: float32}]
+    batch_size: [20, 32, 100, 128, 200, 300]
+    embedding_size: [20, 32, 100, 128, 200, 300]
+    hidden_size: [100, 150, 200, 250, 300]
+    dropout: [0.1,0.2,0.3, 0.4, 0.5]
+    l2: [0.00001, 0.0001]
+  key: FLCSP_cate
+
+- class: CM_HGCN.CM_HGCN.CM_HGCN
+  params: { }
+  params_opt:
+    epoch: [10, 15, 20, 25]
+    lr: [{from: 0.01, to: 0.001, in: 10, type: float32},{from: 0.001, to: 0.0001, in: 10, type: float32}]
+    batch_size: [20, 50, 100]
+    embedding_size: [30, 50, 70, 100, 120]
+    l2: [0.0001, 0.00001]
+  key: CM_HGCN
+
+- class: sgnn.gnn.GGNN
+  params: {  }
+  params_opt:
+    epoch: [10, 15, 20, 25]
+    lr: [0.009]
+    embedding_size: [16, 32, 64, 80, 100, 150, 200]
+    batch_size: [16, 32, 128, 256, 200]
+    l2: [0.0001, 0.00004, 0.00001]
+  key: GGNN
+
+- class: GCEGNN.GCEGNN.GCEGNN
+  params: { }
+  params_opt:
+    epoch: [10, 15, 20, 25]
+    lr: [{from: 0.01, to: 0.001, in: 10, type: float32},{from: 0.001, to: 0.0001, in: 10, type: float32}]
+    batch_size: [20, 32, 100, 128]
+    embedding_size: [50, 100, 200]
+    dropout: [0.1, 0.2, 0.3, 0.5]
+    l2: [0.0001, 0.00001]
+  key: GCEGNN
+
+- class: COTREC.COTREC.COTRECModel
+  params: { }
+  params_opt:
+   epoch: [10, 15, 20, 25]
+   lr: [{from: 0.01, to: 0.001, in: 10, type: float32},{from: 0.001, to: 0.0001, in: 10, type: float32}]
+   batch_size: [20, 50, 100]
+   embedding_size: [20, 50, 100]
+   l2: [0.0001, 0.00001]
+  key: COTREC
+

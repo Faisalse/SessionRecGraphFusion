@@ -1,0 +1,3 @@
+Parameters,MRR20
+Epoch:1-Lr:0.004-BatchSize:128-HiddenSize:200-L2:1e-05-Dropout:0.2,1.5712227938995546e-98
+Epoch:1-Lr:0.001-BatchSize:128-HiddenSize:50-L2:1e-05-Dropout:0.1,1.1111111222222233e-29

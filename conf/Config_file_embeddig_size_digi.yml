@@ -1,0 +1,88 @@
+type: opt # single|window, maybe add opt
+key: Optimization_of_GNN_kNN_Models #added to the csv names
+evaluation: evaluation #evaluation|evaluation_last|evaluation_multiple|evaluation_user_based|evaluation_user_based_multiple
+
+data:
+  name: diginetica #added in the end of the csv names
+  folder: data/diginetica/testdata/
+  prefix: diginetica
+  opts: {sessions_test: 100} # sessions_test: "S" or "M" or "L"
+
+results:
+  folder: results/
+metrics:
+- class: accuracy.MRR
+  length: [3,5,10,15,20]
+- class: accuracy.HitRate
+  length: [3,5,10,15,20]
+- class: coverage.Coverage
+  length: [20]
+- class: popularity.Popularity
+  length: [20]
+- class: saver.Saver
+  length: [50]
+- class: time_memory_usage.Time_usage_training
+- class: time_memory_usage.Time_usage_testing
+
+optimize:
+  class: accuracy.MRR
+  length: [20]
+  iterations: 50  #optional
+
+algorithms:
+- class: TAGNN.TAGNN.TAGNN
+  params: { }
+  params_opt:
+    epoch: [15]
+    lr: [0.0007]
+    batch_size: [100]
+    embedding_size: [100]
+    l2: [0.00001]
+    seed: {from: 100, to: 10000000, in: 100000, type: int32}
+  key: TAGNN
+
+- class: GNRRW.GNRRW.GNRRW
+  params: { }
+  params_opt:
+    epoch: [15]
+    lr: [0.01]
+    batch_size: [128]
+    embedding_size: [200]
+    l2: [0.00001]
+    seed: {from: 100, to: 10000000, in: 100000, type: int32}
+  key: GNRRW
+
+- class: FLCSP.FLCSP_cate.FLCSP_cate
+  params: { }
+  params_opt:
+    epoch: [15]
+    lr: [0.0005]
+    batch_size: [300]
+    embedding_size: [50]
+    hidden_size: [150]
+    dropout: [0.2]
+    l2: [0.00001]
+    seed: {from: 100, to: 10000000, in: 100000, type: int32}
+  key: FLCSP_cate
+- class: sgnn.gnn.GGNN
+  params: {  }
+  params_opt:
+    epoch: [10]
+    lr: [0.001]
+    embedding_size: [100]
+    batch_size: [128]
+    l2: [0.0001]
+    seed: {from: 100, to: 10000000, in: 100000, type: int32}
+  key: GGNN
+
+- class: COTREC.COTREC.COTRECModel
+  params: { }
+  params_opt:
+   epoch: [20]
+   lr: [0.0009]
+   batch_size: [50]
+   embedding_size: [64]
+   l2: [0.0001]
+   seed: {from: 100, to: 10000000, in: 100000, type: int32}
+  key: COTREC
+
