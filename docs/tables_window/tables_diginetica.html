@@ -937,7 +937,192 @@
     </div>
 
     <div id="embedding1statis" class="tab-pane fade">
-				<h4>Statistical values based on MRR@20</h4>
+
+	    
+				<!-- This is a comment -->
+	<h4>Statistical analysis based on MRR@20</h4>   embedding1statis
+
+<table>
+    <tr>
+        <td>COTREC</td>
+        <td>GNRWW</td>
+        <td>TAGNN</td>
+        <td>FLCSP</td>
+        <td>GGNN</td>
+    </tr>
+    <tr>
+        <td>0.310</td>
+        <td>0.327</td>
+        <td>0.165</td>
+        <td>0.207</td>
+        <td>0.297</td>
+    </tr>
+    <tr>
+        <td>0.329</td>
+        <td>0.342</td>
+        <td>0.246</td>
+        <td>0.211</td>
+        <td>0.314</td>
+    </tr>
+    <tr>
+        <td>0.343</td>
+        <td>0.338</td>
+        <td>0.294</td>
+        <td>0.191</td>
+        <td>0.312</td>
+    </tr>
+    <tr>
+        <td>0.340</td>
+        <td>0.339</td>
+        <td>0.263</td>
+        <td>0.209</td>
+        <td>0.324</td>
+    </tr>
+    <tr>
+        <td>0.343</td>
+        <td>0.335</td>
+        <td>0.263</td>
+        <td>0.197</td>
+        <td>0.311</td>
+    </tr>
+    <tr>
+        <td>0.340</td>
+        <td>0.333</td>
+        <td>0.242</td>
+        <td>0.222</td>
+        <td>0.310</td>
+    </tr>
+    <tr>
+        <td>0.337</td>
+        <td>0.342</td>
+        <td>0.262</td>
+        <td>0.203</td>
+        <td>0.313</td>
+    </tr>
+    <tr>
+        <td>0.333</td>
+        <td>0.335</td>
+        <td>0.256</td>
+        <td>0.192</td>
+        <td>0.321</td>
+    </tr>
+    <tr>
+        <td>0.334</td>
+        <td>0.330</td>
+        <td>0.247</td>
+        <td>0.225</td>
+        <td>0.318</td>
+    </tr>
+    <tr>
+        <td>0.343</td>
+        <td>0.347</td>
+        <td>0.239</td>
+        <td>0.205</td>
+        <td>0.315</td>
+    </tr>
+</table>
+
+
+<h1>One-way ANOVA</h1>
+<p>H0: There is no difference in the model means   U<sub>COTREC</sub> = U<sub>GNRWW</sub> = U<sub>TAGNN</sub> = U<sub>FLCSP</sub> = U<sub>GGNN</sub></p>
+<p>H1: At least one model's mean differs from the others</p>
+<p>Significance level = 0.05</p>
+
+<table>
+    <tr>
+        <td>SUMMARY</td>
+    </tr>
+    <tr>
+        <td>Groups</td>
+        <td>Count</td>
+        <td>Sum</td>
+        <td>Average</td>
+        <td>Variance</td>
+    </tr>
+    <tr>
+        <td>COTREC</td>
+        <td>10</td>
+        <td>3.350865671</td>
+        <td>0.3350865671</td>
+        <td>0.0001032043935</td>
+    </tr>
+    <tr>
+        <td>GNRWW</td>
+        <td>10</td>
+        <td>3.368446379</td>
+        <td>0.3368446379</td>
+        <td>0.00003443092133</td>
+    </tr>
+    <tr>
+        <td>TAGNN</td>
+        <td>10</td>
+        <td>2.476281933</td>
+        <td>0.2476281933</td>
+        <td>0.0010992159</td>
+    </tr>
+    <tr>
+        <td>FLCSP</td>
+        <td>10</td>
+        <td>2.062314624</td>
+        <td>0.2062314624</td>
+        <td>0.0001282693332</td>
+   
+    </tr>
+    <tr>
+        <td>GGNN</td>
+        <td>10</td>
+        <td>3.135340815</td>
+        <td>0.3135340815</td>
+        <td>0.00005413629124</td>
+    
+    </tr>
+    <tr>
+        <td>ANOVA</td>
+    </tr>
+    <tr>
+        <td>Source of Variation</td>
+        <td>SS</td>
+        <td>df</td>
+        <td>MS</td>
+        <td>F(obtained)</td>
+        <td>P-value</td>
+        <td>F(critical)</td>
+    </tr>
+    <tr>
+        <td>Between Groups</td>
+        <td>0.1357081815</td>
+        <td>4</td>
+        <td>0.03392704538</td>
+        <td>119.5239806</td>
+        <td>0</td>
+        <td>2.578739184</td>
+    </tr>
+    <tr>
+        <td>Within Groups</td>
+        <td>0.01277331155</td>
+        <td>45</td>
+        <td>0.0002838513678</td>
+    </tr>
+    <tr>
+        <td>Total</td>
+        <td>0.1484814931</td>
+        <td>49</td>
+    </tr>
+</table>
+
+<p> <br> <br>
+The values of F(obtained) and F(critical) are 119.523 and 2.578, respectively. The value of F(obtained) is greater than the value of F(critical). 
+Therefore, we have enough evidence to reject the null hypothesis (H0).</p>
+<p>Effect size (&#951;) = 0.135708181506113 / 0.148481493058201 <br>
+Effect size (&#951;) = 0.9139
+<br>
+Effect size (&#951;) = 91.39%
+</p>
+
+
+				<!-- Remember to add more information here -->
+
+	    
     </div>
 		</div>
 		
