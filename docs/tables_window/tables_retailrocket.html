@@ -219,7 +219,7 @@
 </table>
 <br />
 <h5>One-way ANOVA</h5>
-<p>
+<p align="justify">
 we perform a significance test by calculating session-individual metric values e.g., 
 obtain the mean MRR values of all sessions in the test data and then use 
 the ANOVA test to analyze whether the difference between the compared models is significant
@@ -232,8 +232,76 @@ H1: At least one model's mean differs from the others
 <br>
 Significance level = 0.05
 <br>
-F(obtained) = 3.725
-P-value = 0.00004
-The P-value is less than the value of of significance level. 
-Therefore, we have enough evidence to reject the null hypothesis (H0).</p>
+F(obtained) = 3.725 <br>
+P-value = 0.00004 <br>
 </p>
+<p align="justify"> The P-value is less than the value of of significance level. Therefore, we have enough evidence to reject the null hypothesis (H0).
+We now know that at least the mean of a model is different from the others. In addition, the post hoc analysis was conducted using the Tukey test to 
+determine that the mean of which model differs from the others. 
+Our analysis reveals that the following models have different means while others have the same mean.
+</p>
+<table>
+    <tr>
+        <td>group1</td>
+        <td>group2</td>
+        <td>meandiff</td>
+        <td>p-adj</td>
+        <td>lower</td>
+        <td>upper</td>
+        <td>reject</td>
+    </tr>
+    <tr>
+        <td>FLCSP</td>
+        <td>GGNN</td>
+        <td>0.1368</td>
+        <td>0.001</td>
+        <td>0.0332</td>
+        <td>0.2404</td>
+        <td>TRUE</td>
+    </tr>
+    <tr>
+        <td>FLCSP</td>
+        <td>VSTAN</td>
+        <td>0.1405</td>
+        <td>0.0006</td>
+        <td>0.0369</td>
+        <td>0.2442</td>
+        <td>TRUE</td>
+    </tr>
+    <tr>
+        <td>FLCSP</td>
+        <td>sfcknn</td>
+        <td>0.1246</td>
+        <td>0.005</td>
+        <td>0.0209</td>
+        <td>0.2282</td>
+        <td>TRUE</td>
+    </tr>
+    <tr>
+        <td>GCEGNN</td>
+        <td>GGNN</td>
+        <td>0.1239</td>
+        <td>0.0054</td>
+        <td>0.02</td>
+        <td>0.2276</td>
+        <td>TRUE</td>
+    </tr>
+    <tr>
+        <td>GCEGNN</td>
+        <td>VSTAN</td>
+        <td>0.1277</td>
+        <td>0.0034</td>
+        <td>0.0241</td>
+        <td>0.2313</td>
+        <td>TRUE</td>
+    </tr>
+    <tr>
+        <td>GCEGNN</td>
+        <td>sfcknn</td>
+        <td>0.1117</td>
+        <td>0.0219</td>
+        <td>0.0081</td>
+        <td>0.2153</td>
+        <td>TRUE</td>
+    </tr>
+</table>
