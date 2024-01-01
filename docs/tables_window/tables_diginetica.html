@@ -229,7 +229,7 @@
 
 			<br />
 	<h4>Statistical analysis based on MRR@20</h4>
-<p>
+<p align="justify">
 we perform a significance test by calculating session-individual metric values e.g., 
 obtain the mean MRR values of all sessions in the test data and then use 
 the ANOVA test to analyze whether the difference between the compared models is significant </p>
@@ -241,10 +241,89 @@ H1: At least one model's mean differs from the others
 Significance level = 0.05
 <br>
 F(obtained) = 2.509 <br>
-P-value = 0.004 <br>
-The P-value is less than the value of of significance level. 
-Therefore, we have enough evidence to reject the null hypothesis (H0).</p>	
+P-value = 0.004 <br> </p>
+<p align="justify"> The P-value is less than the value of of significance level. So, we have enough evidence to reject the null hypothesis (H0).
+We now know that at least the mean of a model is different from the others. Therefore, the post hoc analysis was performed using the Tukey test to 
+determine the mean of which model differs from the others. Our analysis reveals that the following models have different means while others have the same mean.
+</p>
+<br>
+<table>
+    <tr>
+        <td>group1</td>
+        <td>group2</td>
+        <td>meandiff</td>
+        <td>p-adj</td>
+        <td>lower</td>
+        <td>  upper</td>
+        <td>  reject</td>
+    </tr>
+    <tr>
+        <td>FLCSP</td>
+        <td>   GGNN</td>
+        <td>0.0966</td>
+        <td>0.0277</td>
+        <td>0.0052</td>
+        <td>0.188</td>
+        <td>TRUE</td>
+    </tr>
+    <tr>
+        <td>FLCSP</td>
+        <td>  GNRWW</td>
+        <td>0.0941</td>
+        <td>0.0369</td>
+        <td>0.0027</td>
+        <td>0.1855</td>
+        <td>TRUE</td>
+    </tr>
+    <tr>
+        <td>FLCSP</td>
+        <td>    MGS</td>
+        <td>0.0927</td>
+        <td>0.0432</td>
+        <td>0.0013</td>
+        <td>0.1841</td>
+        <td>TRUE</td>
+    </tr>
+    <tr>
+        <td>FLCSP</td>
+        <td> sfcknn</td>
+        <td>0.1047</td>
+        <td>0.01</td>
+        <td>0.0133</td>
+        <td>0.1961</td>
+        <td>TRUE</td>
+    </tr>
+    <tr>
+        <td>FLCSP</td>
+        <td>     sr</td>
+        <td>0.0921</td>
+        <td>0.0461</td>
+        <td>0.0007</td>
+        <td>0.1835</td>
+        <td>TRUE</td>
+    </tr>
+    <tr>
+        <td>FLCSP</td>
+        <td>   stan</td>
+        <td>0.0953</td>
+        <td>0.0321</td>
+        <td>0.0039</td>
+        <td>0.1867</td>
+        <td>TRUE</td>
+    </tr>
+    <tr>
+        <td>FLCSP</td>
+        <td>  vstan</td>
+        <td>0.0939</td>
+        <td>0.0379</td>
+        <td>0.0025</td>
+        <td>0.1853</td>
+        <td>TRUE</td>
+    </tr>
+</table>		
 
+
+		
 		
 	</div>
 
