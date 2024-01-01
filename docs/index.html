@@ -148,18 +148,21 @@
 	<div class="abstract">
 
 		<p align="justify">
-		      In session-based recommendation settings, a recommender system has no access to long-term user profiles and thus has to base its item suggestions on the 
-			user interactions that are observed in an ongoing session. Since such sessions can consist of only a small set of interactions, 
-			various hybrid approaches were proposed in the recent literature, which consider side information about the items, e.g., their category. 
-			From a technical viewpoint, Graph Neural Networks (GNN) are a common choice for such problem settings, as these types of neural networks allow us 
-			to integrate various types of heterogeneous information in a natural way. Unfortunately, in the existing literature a variety of evaluation settings 
-			are used, e.g., in terms of protocols, metrics and baselines, which makes it difficult to assess what represents the state-of-the-art in session-based 
-			recommendation.  In this work, we present the results of an independent evaluation of a eight GNN-based approaches that were recently published in high-quality outlets. 
-			To ensure a fair comparison, all models are systematically tuned and tested under identical conditions using three commonly used datasets. 
-			We furthermore include k-nearest-neighbor and sequential rules-based models as baselines, as such models have previously exhibited competitive performance results for similar settings. 
-			To our surprise, the evaluation showed that the simple models, which do not rely on side information, outperform <em>all</em> recent GNN models in terms of the Mean Reciprocal Rank, which we used 
-			as an optimization criterion, and were only outperformed in three cases in terms of the Hit Rate. Additional analyses furthermore reveal that several other factors that are often not deeply discussed in papers, e.g., 
-			random seeds, can markedly impact the performance of GNN-based models. Our results therefore <em>(a)</em> point to continuing issues in the community in terms of research methodology and <em>(b)</em> indicate that there is ample room for improvement in session-based recommendation.
+		       In session-based recommendation settings, a recommender system has to base its suggestions on the user interactions that are 
+			observed in an ongoing session. Since such sessions can consist of only a small set of interactions, various approaches based on 
+			Graph Neural Networks (GNN) were recently proposed, as they allow us to integrate various types of side information about the items 
+			in a natural way. Unfortunately,  a variety of evaluation settings are used in the literature, e.g., in terms of protocols, metrics 
+			and baselines, making it difficult to assess what represents the state of the art.  In this work, we present the results of an  
+			evaluation of eight recent GNN-based approaches that were  published in high-quality outlets. <br>
+			For a fair comparison, all models are systematically tuned and tested under identical conditions using three common datasets. 
+			We furthermore include k-nearest-neighbor and sequential rules-based models as baselines, as such models have previously exhibited 
+			competitive performance results for similar settings. To our surprise, the evaluation showed that the simple models 
+			outperform <em>all</em> recent GNN models in terms of the Mean Reciprocal Rank, which we used as an optimization criterion, 
+			and were only outperformed in three cases in terms of the Hit Rate. Additional analyses furthermore reveal that several other 
+			factors that are often not deeply discussed in papers, e.g., random seeds, can markedly impact the performance of GNN-based models. 
+			Our results therefore <em>(a)</em>  point to continuing issues in the community in terms of research methodology and <em>(b)</em>  
+			indicate that there is ample room for improvement in session-based recommendation. 
+
 		</p>
 		
 	</div>
