@@ -1,0 +1,38 @@
+type: single # single|window, maybe add opt
+key: BaselinesAndBenchMarkModels #added to the csv names
+evaluation: evaluation #evaluation|evaluation_last|evaluation_multiple|evaluation_user_based|evaluation_user_based_multiple
+data:
+  name: rec15 #added in the end of the csv names
+  folder: data/rec15/fulltrain/rec1By64/
+  prefix: rec15
+  opts: {sessions_test: 100} # sessions_test: "S" or "M" or "L"
+results:
+  folder: results/
+  
+metrics:
+- class: accuracy.MRR
+  length: [3,5,10,15,20]
+- class: accuracy.HitRate
+  length: [3,5,10,15,20]
+- class: coverage.Coverage
+  length: [20]
+- class: popularity.Popularity
+  length: [20]
+- class: saver.Saver
+  length: [50]
+- class: time_memory_usage.Time_usage_training
+- class: time_memory_usage.Time_usage_testing
+
+algorithms:
+- class: knn.vstan.VSKNN_STAN
+  params: { k: 2000 , sample_size: 3000, lambda_spw: 0.11 , lambda_snh: 25, lambda_inh: 2.4, lambda_idf: 15 }
+  key: stan
+- class: knn.stan.STAN
+  params: { k: 5500 , sample_size: 1500, lambda_spw: 0.81 , lambda_snh: 13, lambda_inh: 0.13 }
+  key: stan
+- class: knn.sfcknn.SeqFilterContextKNN
+  params: { k: 500, sample_size: 2500}
+  key: sfcknn
+- class: baselines.sr.SequentialRules
+  params: { steps: 5, weighting: log}
+  key: sr
