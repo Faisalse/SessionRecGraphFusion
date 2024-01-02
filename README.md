@@ -76,12 +76,16 @@ session-aware recommendation. More information about the session-rec framework c
     <li>Run this command to create virtual environment: <code>conda create --name SessionRecGraphFusion python=3.8</code></li>
     <li>Run this command to activate the virtual environment: <code>conda activate SessionRecGraphFusion</code></li>
     <li>Run this command to install the required libraries for CPU: <code>pip install -r requirements_cpu.txt</code>. However, if you have support of CUDA-capable GPUs, 
-        then run this command to install the required libraries to run the experiments on GPU: <code>pip install -r requirements_gpu.txt"</code></li>
+        then run this command to install the required libraries to run the experiments on GPU: <code>pip install -r requirements_gpu.txt</code></li>
     <li>Finally run this command to reproduce the results: <code>python run_config.py conf/in conf/out</code></li>
+    <li>If you do not understand the instructions, then check the video to run the experiments: (https://youtu.be/uCW2omAxYP8?si=UW_YjJ_GqACuc_Gs)</li>
   </ul>
   <p align="justify">In this study, we use the <a href="https://competitions.codalab.org/competitions/11161#learn_the_details-data2">DIGI</a>, <a href="https://www.kaggle.com/datasets/chadgostopp/recsys-challenge-2015">RSC15</a> and <a href="https://www.kaggle.com/datasets/retailrocket/ecommerce-dataset">RETAIL</a> datasets to evaluate the performance of recently
 published GNN models and to check how they react to the different values of embedding sizes and random seeds. We also conduct the experiments related to the tuning of models on the test data instead of validation data. The reproducibility files to run the experiments can be found in the <i>conf folder</i>. If you want to run the experiments, copy the configuration file from the <i>conf folder</i> and paste it into the <i>in folder</i>, and again run the command <code>python run_config.py conf/in conf/out</code> to reproduce the results. 
 </p>
+
+
+
 </body>
 </html>  
 
