@@ -247,7 +247,7 @@ We now know that at least the mean of a model is different from the others. Ther
 determine the mean of which model differs from the others. Our analysis reveals that the following models have different means while others have the same mean.  
 Moreover, in the first table, we can see that the MRR@20 values of the best performing models e.g., SFSKNN, STAN, VTSAN, SR, MGS and COREC are nearly equal. 
 Therefore, the ANOVA test reveals that top-performing models do not have significant difference among their mean MRR@20 values. </p>
-<u>Note: we report only those cases of the Tukey test where the H0 is rejected.</u>
+<u>Note: we report only those cases of the Tukey test where the H<sub>o</sub> is rejected.</u>
 </p>
 <br>
 <table>
@@ -4040,14 +4040,15 @@ References: <br>
 </table>
 
 
+<br>
 <h4>One-way ANOVA</h4>
-<p>H0: There is no difference in the model means   U<sub>COTREC</sub> = U<sub>GNRWW</sub> = U<sub>TAGNN</sub> = U<sub>FLCSP</sub> = U<sub>GGNN</sub></p>
-<p>H1: At least one model's mean differs from the others</p>
-<p>Significance level = 0.05</p>
+<p align = "left">Null hypothesis (H<sub>o</sub>): There is no difference in the model means   U<sub>COTREC</sub> = U<sub>GNRWW</sub> = U<sub>TAGNN</sub> = U<sub>FLCSP</sub> = U<sub>GGNN</sub> <br>	
+Alternative hypothesis (H<sub>1</sub>): At least one model's mean differs from the others <br>	
+Significance level = 0.05</p>
 
 <table>
     <tr>
-        <td>SUMMARY</td>
+        <td>Summary</td>
 
     </tr>
     <tr>
@@ -4140,13 +4141,46 @@ References: <br>
     </tr>
 </table>
 
-<p> <br> <br>
-The values of F-value and F(critical) are 2092.162 and 2.4194, respectively. The value of F-value is greater than the value of F(critical). 
-Therefore, we have enough evidence to reject the null hypothesis (H0).</p>
-<p>Effect size (&#951;) = 0.650167344986137 / 0.664850911836957<br>
-Effect size (&#951;) = 0.9779
 <br>
-Effect size (&#951;) = 97.79%
+<p align = "justify">
+The F-value and critical F- value are 2092.162 and 2.4194, respectively. The F-value is greater than the critical F-value, therefore, we reject the H<sub>o</sub>.  
+The main purpose of the ANOVA test is to observe the variability between the groups/compared models. However, it does not explain about the magnitude of variability.  
+Therefore, we use the effect size (&#951;) to know the magnitude of variability between the models. The effect size uses the following table to explain the level of variability.
+</p>
+<br>
+<table>
+    <tr>
+        <td>&#951;</td>
+        <td>Size</td>
+    </tr>
+    <tr>
+        <td>0.01</td>
+        <td>small</td>
+    </tr>
+    <tr>
+        <td>0.09</td>
+        <td>medium</td>
+    </tr>
+    <tr>
+        <td>0.25</td>
+        <td>large</td>
+    </tr>
+    <tr>
+        <td>Note: if less than .01, no effect is reported</td>
+    </tr>
+</table>
+<br>
+<p align = "left">&#951; = 0.650167344986137 / 0.664850911836957 <br>
+&#951; = 0.9779
+<br>
+Here we observe the large effect size between the GNN models.
+</p>
+<p align = "left">
+References: <br>
+<ol type="1">
+  <li align = "left"><cite>https://open.maricopa.edu/psy230mm/chapter/chapter-14-analysis-of-variance/</cite></li>
+  <li align = "left">https://en.wikipedia.org/wiki/Analysis_of_variance</li>
+</ol> 	
 </p>
 
 
